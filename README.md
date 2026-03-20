@@ -1,43 +1,43 @@
-# 🛒 Appliances E-Commerce (Microservices Architecture)
+# 🛒 E-Commerce de Electrodomésticos (Arquitectura de Microservicios)
 
-## 📌 Overview
+## 📌 Descripción general
 
-This project is a backend application for an e-commerce platform specialized in home appliances.
-It is built using a **microservices architecture** with Java and Spring Boot, following best practices for scalability, modularity, and maintainability.
+Este proyecto es una aplicación backend para una plataforma de comercio electrónico especializada en electrodomésticos.  
+Está construida utilizando una **arquitectura de microservicios** con Java y Spring Boot, siguiendo buenas prácticas de escalabilidad, modularidad y mantenibilidad.
 
-The system allows management of:
+El sistema permite la gestión de:
 
-* Users
-* Products
-* Carts
-* Sales
+* Usuarios
+* Productos
+* Carritos
+* Ventas
 
-Each responsibility is separated into independent services that communicate with each other.
-
----
-
-## 🧱 Architecture
-
-The application is composed of the following microservices:
-
-* **user-service** → Manages users
-* **product-service** → Manages products and stock
-* **cart-service** → Handles shopping carts
-* **sale-service** → Processes sales
-* **eureka-server** → Service discovery
-
-### 🔄 Communication
-
-* REST APIs
-* OpenFeign clients for inter-service communication
-* Service discovery using Eureka
+Cada responsabilidad está separada en servicios independientes que se comunican entre sí.
 
 ---
 
-## ⚙️ Technologies Used
+## 🧱 Arquitectura
+
+La aplicación está compuesta por los siguientes microservicios:
+
+* **user-service** → Gestiona usuarios
+* **product-service** → Gestiona productos y stock
+* **cart-service** → Maneja carritos de compra
+* **sale-service** → Procesa ventas
+* **eureka-server** → Descubrimiento de servicios
+
+### 🔄 Comunicación
+
+* APIs REST
+* Clientes OpenFeign para comunicación entre servicios
+* Descubrimiento de servicios usando Eureka
+
+---
+
+## ⚙️ Tecnologías utilizadas
 
 * Java 17+
-* Functional Programming (Java Streams, Optional, Lambdas)
+* Programación funcional (Streams, Optional, Lambdas)
 * Spring Boot
 * Spring Data JPA
 * Spring Cloud (Eureka, OpenFeign)
@@ -48,114 +48,114 @@ The application is composed of the following microservices:
 
 ---
 
-## 🚀 How to Run the Project
+## 🚀 Cómo ejecutar el proyecto
 
-1. Start the **Eureka Server**
-2. Run each microservice:
-
+1. Iniciar el **Eureka Server**
+2. Ejecutar cada microservicio:
    * user-service
    * product-service
    * cart-service
    * sale-service
-3. Ensure all services are registered in Eureka:
-
-```
-http://localhost:8761
-```
+3. Verificar que todos los servicios estén registrados en Eureka:
+   http://localhost:8761
 
 ---
 
-## 📡 Main Features
-
-### 👤 User Management
-
-* Create users
-* Validate user existence via API
-
-### 📦 Product Management
-
-* CRUD operations for products
-* Stock management
-* External access for validation and pricing
-
-### 🛒 Cart System
-
-* Add products to cart
-* Validate stock availability (pre-check)
-* Calculate total dynamically
-* Uses snapshot pricing (price at time of adding)
-
-### 💰 Sales System
-
-* Create sales based on cart
-* Fetch cart data dynamically
-* Orchestrates purchase flow between services
 
 ---
 
-## 🧠 Design Decisions
+## 📡 Funcionalidades principales
 
-* **Microservices isolation**: Each service owns its data
-* **DTO usage**: Avoid exposing internal entities
-* **Mapper layer**: Clean separation between layers
-* **Exception handling**: Centralized error handling
-* **API communication**: Services communicate via Feign clients
+### 👤 Gestión de usuarios
 
+* Crear usuarios
+* Validar la existencia de usuarios mediante API
+
+### 📦 Gestión de productos
+
+* Operaciones CRUD para productos
+* Gestión de stock
+* Acceso externo para validación y precios
+
+### 🛒 Sistema de carrito
+
+* Agregar productos al carrito
+* Validar disponibilidad de stock (pre-chequeo)
+* Calcular el total dinámicamente
+* Uso de precio “snapshot” (precio al momento de agregar)
+
+### 💰 Sistema de ventas
+
+* Crear ventas basadas en datos del carrito
+* Obtener información del carrito dinámicamente
+* Orquestar el flujo de compra entre servicios
+
+✅ Manejo de errores y respuestas HTTP  
+- Uso de `ResponseEntity` para construir respuestas HTTP personalizadas  
+- Implementación de manejo global de excepciones mediante `@ControllerAdvice`  
+- Clase centralizada `GlobalExceptionHandler`  
+- Respuestas consistentes con códigos HTTP adecuados (`200`, `201`, `400`, `404`, etc.)  
+- Validaciones de negocio con excepciones específicas  
 ---
-## ⚡ Functional Programming Usage
 
-This project incorporates functional programming principles in Java to improve code readability, safety, and maintainability.
+## 🧠 Decisiones de diseño
 
-Key usages include:
-
-- **Streams API** for collection processing
-- **Optional** to avoid null-related issues
-- **Lambda expressions** for cleaner and more expressive logic
-- Declarative style over imperative loops where possible
-
-These practices help reduce boilerplate code and make business logic more concise and expressive.
-
----
-
-## 📬 API Testing
-
-A Postman collection is included to test all endpoints easily.
-
-Steps:
-
-1. Import the collection into Postman
-2. Run requests in order (User → Product → Cart → Sale)
-
----
-
-## 🚧 Work in Progress
-
-Currently implementing:
-
-* Stock management system
-* Atomic stock updates in `product-service`
-* Concurrency handling for simultaneous purchases
-
-This feature is being developed in the branch:
-
-```
-stock-management
-```
+* **Aislamiento de microservicios**: Cada servicio posee sus propios datos
+* **Uso de DTOs**: Evita exponer entidades internas
+* **Capa de mapeo (Mapper)**: Separación clara de responsabilidades
+* **Manejo centralizado de excepciones**
+* **Comunicación entre APIs**: Uso de clientes Feign
 
 ---
 
-## 🧠 Future Improvements
+## ⚡ Uso de programación funcional
+
+Este proyecto incorpora principios de programación funcional en Java para mejorar la legibilidad, seguridad y mantenibilidad del código.
+
+Usos principales:
+
+- **Streams API** para procesamiento de colecciones
+- **Optional** para evitar problemas relacionados con valores nulos
+- **Expresiones lambda** para una lógica más clara y expresiva
+- Estilo declarativo sobre bucles imperativos cuando es posible
+
+Estas prácticas ayudan a reducir código repetitivo y hacen que la lógica de negocio sea más concisa y expresiva.
+
+---
+
+## 📬 Pruebas de API
+
+Se incluye una colección de Postman para probar todos los endpoints fácilmente.
+
+Pasos:
+
+1. Importar la colección en Postman
+2. Ejecutar las requests en orden (User → Product → Cart → Sale)
+
+---
+
+## 🚧 Trabajo en progreso
+
+Actualmente se está implementando:
+
+* Sistema de gestión de stock
+* Actualizaciones atómicas de stock en `product-service`
+* Manejo de concurrencia para compras simultáneas
+
+Esta funcionalidad se está desarrollando en la rama: stock-management
 
 * API Gateway
 * Circuit Breaker (Resilience4j)
 * Config Server
-* Authentication & Authorization (Spring Security + JWT)
-* Distributed transactions (Saga pattern)
-* Docker containerization
-
+* Autenticación y autorización (Spring Security + JWT)
+* Contenerización con Docker
 ---
 
 
-## 👨‍💻 Author
+---
 
-Developed as part of a backend portfolio project focused on microservices and scalable systems.
+## 🧠 Mejoras futuras
+
+* Autenticación y autorización (Spring Security + JWT)
+
+---

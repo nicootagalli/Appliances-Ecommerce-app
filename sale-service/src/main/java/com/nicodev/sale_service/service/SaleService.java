@@ -8,20 +8,19 @@ import com.nicodev.sale_service.mapper.SaleMapper;
 import com.nicodev.sale_service.model.Sale;
 import com.nicodev.sale_service.repository.ICartAPI;
 import com.nicodev.sale_service.repository.ISaleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class SaleService implements ISaleService{
 
-    @Autowired
-    private ISaleRepository saleRepository;
+    private final ISaleRepository saleRepository;
 
-    @Autowired
-    private ICartAPI cartAPI;
+    private final ICartAPI cartAPI;
 
     // POST
     @Override

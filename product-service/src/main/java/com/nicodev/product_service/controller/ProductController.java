@@ -3,9 +3,7 @@ package com.nicodev.product_service.controller;
 import com.nicodev.product_service.dto.ProductDTO;
 import com.nicodev.product_service.model.Product;
 import com.nicodev.product_service.service.IProductService;
-import org.apache.http.protocol.HTTP;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
+@RequiredArgsConstructor
 public class ProductController {
 
-    @Autowired
-    private IProductService productService;
+    private final IProductService productService;
 
     // POST
     @PostMapping("/save")

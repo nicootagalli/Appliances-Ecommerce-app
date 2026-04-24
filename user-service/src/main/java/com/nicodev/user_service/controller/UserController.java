@@ -3,8 +3,7 @@ package com.nicodev.user_service.controller;
 import com.nicodev.user_service.dto.UserDTO;
 import com.nicodev.user_service.model.User;
 import com.nicodev.user_service.service.IUserService;
-import com.nicodev.user_service.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,10 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-    private IUserService userService;
+    private final IUserService userService;
 
     // POST
     @PostMapping("/save")

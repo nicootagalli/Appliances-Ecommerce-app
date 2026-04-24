@@ -3,7 +3,6 @@ package com.nicodev.cart_service.service;
 import com.nicodev.cart_service.dto.CartDTO;
 import com.nicodev.cart_service.dto.CartToUserDTO;
 import com.nicodev.cart_service.dto.ProductDTO;
-import com.nicodev.cart_service.dto.UserDTO;
 import com.nicodev.cart_service.exception.BadRequestException;
 import com.nicodev.cart_service.exception.NotFoundException;
 import com.nicodev.cart_service.mapper.CartMapper;
@@ -12,21 +11,20 @@ import com.nicodev.cart_service.model.Item;
 import com.nicodev.cart_service.repository.ICartRepository;
 import com.nicodev.cart_service.repository.IProductAPI;
 import com.nicodev.cart_service.repository.IUserAPI;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CartService implements ICartService{
 
-    @Autowired
-    private ICartRepository cartRepository;
+    private final ICartRepository cartRepository;
 
-    @Autowired
-    private IProductAPI productAPI;
-    @Autowired
-    private IUserAPI userAPI;
+    private final IProductAPI productAPI;
+
+    private final IUserAPI userAPI;
 
     // POST
     @Override

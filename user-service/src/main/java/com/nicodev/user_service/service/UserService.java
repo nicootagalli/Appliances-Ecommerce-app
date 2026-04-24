@@ -6,16 +6,16 @@ import com.nicodev.user_service.exception.NotFoundException;
 import com.nicodev.user_service.mapper.UserMapper;
 import com.nicodev.user_service.model.User;
 import com.nicodev.user_service.repository.IUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserService implements IUserService{
 
-    @Autowired
-    private IUserRepository userRepository;
+    private final IUserRepository userRepository;
 
     // POST
     @Override

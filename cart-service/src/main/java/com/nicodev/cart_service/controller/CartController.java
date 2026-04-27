@@ -4,7 +4,7 @@ import com.nicodev.cart_service.dto.CartDTO;
 import com.nicodev.cart_service.dto.CartToUserDTO;
 import com.nicodev.cart_service.model.Cart;
 import com.nicodev.cart_service.service.ICartService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,10 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/cart")
+@RequiredArgsConstructor
 public class CartController {
 
-    @Autowired
-    private ICartService cartService;
+    private final ICartService cartService;
 
     // POST
     @PostMapping("/save")

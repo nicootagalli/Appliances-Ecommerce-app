@@ -1,22 +1,21 @@
 package com.nicodev.product_service.service;
 
 import com.nicodev.product_service.dto.ProductDTO;
-import com.nicodev.product_service.exception.NotFoundException;
 import com.nicodev.product_service.exception.BadRequestException;
+import com.nicodev.product_service.exception.NotFoundException;
 import com.nicodev.product_service.mapper.ProductMapper;
 import com.nicodev.product_service.model.Product;
 import com.nicodev.product_service.repository.IProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService implements IProductService{
 
-    @Autowired
-    private IProductRepository productRepository;
+    private final IProductRepository productRepository;
 
     //POST
     @Override

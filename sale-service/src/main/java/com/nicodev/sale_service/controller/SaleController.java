@@ -3,7 +3,7 @@ package com.nicodev.sale_service.controller;
 import com.nicodev.sale_service.dto.SaleDTO;
 import com.nicodev.sale_service.model.Sale;
 import com.nicodev.sale_service.service.ISaleService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/sale")
+@RequiredArgsConstructor
 public class SaleController {
 
-    @Autowired
-    private ISaleService saleService;
+    private final ISaleService saleService;
 
     //POST
     @PostMapping("/save")

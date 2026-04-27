@@ -8,14 +8,18 @@ import com.nicodev.sale_service.mapper.SaleMapper;
 import com.nicodev.sale_service.model.Sale;
 import com.nicodev.sale_service.repository.ICartAPI;
 import com.nicodev.sale_service.repository.ISaleRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class SaleService implements ISaleService{
 
     private final ISaleRepository saleRepository;
@@ -42,6 +46,7 @@ public class SaleService implements ISaleService{
 
     // FIND SALE DTO BY ID
     @Override
+    @CircuitBreaker(name = "sale-service", fallbackMethod = "fallbackFindSaleDTO")
     public SaleDTO findSaleDTO(Long sale_id) {
         // find the Sale entity or throw exception
         Sale sale = saleRepository.findById(sale_id)
@@ -52,6 +57,16 @@ public class SaleService implements ISaleService{
         // convert to dto for a professional response.
         SaleDTO saleDTO = SaleMapper.toDTO(sale,cartDTO);
         return saleDTO;
+    }
+
+    public SaleDTO fallbackFindSaleDTO(Long sale_id, Throwable throwable){
+        log.error("Cart service unavailable for sale_id {}: {}", sale_id, throwable.getMessage());
+
+        SaleDTO fallbackDTO = new SaleDTO();
+        fallbackDTO.setSale_id(null);
+        fallbackDTO.setCart(new CartDTO());
+        fallbackDTO.setDate(LocalDate.now());
+        return fallbackDTO;
     }
 
     // FIND ALL SALE DTO

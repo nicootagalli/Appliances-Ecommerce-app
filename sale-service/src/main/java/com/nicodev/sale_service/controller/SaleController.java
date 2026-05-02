@@ -36,6 +36,12 @@ public class SaleController {
         return ResponseEntity.ok(saleService.findSaleDTO(sale_id));
     }
 
+    // GET SALE DTO
+    @GetMapping("/get/{sale_id}")
+    public ResponseEntity<SaleDTO> getSaleDTO(@PathVariable Long sale_id){
+        return null;
+    }
+
     // EDIT
     @PutMapping("/edit/{sale_id}")
     public ResponseEntity<SaleDTO> editSale(@PathVariable Long sale_id,

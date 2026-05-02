@@ -9,7 +9,6 @@ import com.nicodev.sale_service.model.Sale;
 import com.nicodev.sale_service.repository.ICartAPI;
 import com.nicodev.sale_service.repository.ISaleRepository;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,6 +25,8 @@ public class SaleService implements ISaleService{
     private final ISaleRepository saleRepository;
 
     private final ICartAPI cartAPI;
+
+    private final CartServiceClient cartServiceClient;
 
     // POST
     @Override
@@ -51,32 +52,15 @@ public class SaleService implements ISaleService{
                 .orElseThrow(()-> new NotFoundException("Sale with ID: " + sale_id + " not found"));
     }
 
-    // 2. Metodo para llamada externa von CB.
-    @CircuitBreaker(name = "sale-service", fallbackMethod = "fallbackCart")
-    @Retry(name = "sale-service")
-    public CartDTO findCartDTO(Long cart_id){
-        return cartAPI.findCartDTO(cart_id);
-    }
 
     // 3. Metodo principal (orquestacion)
     public SaleDTO getSaleDTO(Long sale_id){
         Sale sale = findSaleEntity(sale_id);
-        CartDTO cartDTO = findCartDTO(sale.getCart_id());
+        CartDTO cartDTO = cartServiceClient.findCartDTO(sale.getCart_id());
         SaleDTO saleDTO = SaleMapper.toDTO(sale,cartDTO);
         return saleDTO;
     }
 
-    // 4. fallBack
-    public CartDTO fallbackCart(Long cartId, Throwable t) {
-        log.warn("Cart service unavailable for cartId {}", cartId);
-
-        CartDTO fallbackCartDTO = new CartDTO();
-        fallbackCartDTO.setCart_id(null);
-        fallbackCartDTO.setUser_id(null);
-        fallbackCartDTO.setItems(null);
-        fallbackCartDTO.setTotal(null);
-        return fallbackCartDTO;
-    }
 
     // FIND SALE DTO BY ID
     @Override

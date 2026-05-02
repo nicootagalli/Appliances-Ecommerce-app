@@ -16,6 +16,9 @@ public interface ISaleService {
     //FIND BY ID
     public SaleDTO findSaleDTO(Long sale_id);
 
+    // GET SALE
+    public SaleDTO getSaleDTO(Long sale_id);
+
     // EDIT
     public SaleDTO editSale(Long sale_id, Sale sale);
 

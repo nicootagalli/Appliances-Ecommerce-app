@@ -39,7 +39,7 @@ public class SaleController {
     // GET SALE DTO
     @GetMapping("/get/{sale_id}")
     public ResponseEntity<SaleDTO> getSaleDTO(@PathVariable Long sale_id){
-        return null;
+        return ResponseEntity.ok(saleService.getSaleDTO(sale_id));
     }
 
     // EDIT

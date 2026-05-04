@@ -8,12 +8,10 @@ import com.nicodev.sale_service.mapper.SaleMapper;
 import com.nicodev.sale_service.model.Sale;
 import com.nicodev.sale_service.repository.ICartAPI;
 import com.nicodev.sale_service.repository.ISaleRepository;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,45 +44,18 @@ public class SaleService implements ISaleService{
 
     }
 
-    // 1. Metodo interno sin CB
+    // GET / Internal method
     public Sale findSaleEntity(Long sale_id){
         return saleRepository.findById(sale_id)
                 .orElseThrow(()-> new NotFoundException("Sale with ID: " + sale_id + " not found"));
     }
 
-
-    // 3. Metodo principal (orquestacion)
-    public SaleDTO getSaleDTO(Long sale_id){
+    // Main method
+    public SaleDTO findSaleDTO(Long sale_id){
         Sale sale = findSaleEntity(sale_id);
         CartDTO cartDTO = cartServiceClient.findCartDTO(sale.getCart_id());
         SaleDTO saleDTO = SaleMapper.toDTO(sale,cartDTO);
         return saleDTO;
-    }
-
-
-    // FIND SALE DTO BY ID
-    @Override
-    @CircuitBreaker(name = "sale-service", fallbackMethod = "fallbackFindSaleDTO")
-    public SaleDTO findSaleDTO(Long sale_id) {
-        // find the Sale entity or throw exception
-        Sale sale = saleRepository.findById(sale_id)
-                .orElseThrow(()-> new NotFoundException("Sale with ID: " + sale_id + " not found"));
-        // find the CartDTO usig its API and add it to the saleDTO
-        CartDTO cartDTO = cartAPI.findCartDTO(sale.getCart_id());
-
-        // convert to dto for a professional response.
-        SaleDTO saleDTO = SaleMapper.toDTO(sale,cartDTO);
-        return saleDTO;
-    }
-
-    public SaleDTO fallbackFindSaleDTO(Long sale_id, Throwable throwable){
-        log.error("Cart service unavailable for sale_id {}: {}", sale_id, throwable.getMessage());
-
-        SaleDTO fallbackDTO = new SaleDTO();
-        fallbackDTO.setSale_id(null);
-        fallbackDTO.setCart(new CartDTO());
-        fallbackDTO.setDate(LocalDate.now());
-        return fallbackDTO;
     }
 
     // FIND ALL SALE DTO

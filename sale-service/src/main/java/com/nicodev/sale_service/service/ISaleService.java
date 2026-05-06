@@ -13,7 +13,7 @@ public interface ISaleService {
     // FIND ALL
     public List<SaleDTO> getSales();
 
-    //FIND BY ID
+    // FIND SALE DTO
     public SaleDTO findSaleDTO(Long sale_id);
 
     // EDIT

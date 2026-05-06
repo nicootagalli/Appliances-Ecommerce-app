@@ -30,9 +30,9 @@ public class SaleController {
         return ResponseEntity.ok(saleService.getSales());
     }
 
-    // FIND BY ID
+    // FIND SALE DTO
     @GetMapping("/find/{sale_id}")
-    public ResponseEntity<SaleDTO> findSale(@PathVariable Long sale_id){
+    public ResponseEntity<SaleDTO> findSaleDTO(@PathVariable Long sale_id){
         return ResponseEntity.ok(saleService.findSaleDTO(sale_id));
     }
 

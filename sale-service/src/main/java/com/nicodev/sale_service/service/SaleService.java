@@ -29,19 +29,15 @@ public class SaleService implements ISaleService{
     // POST
     @Override
     public void saveSale(Sale sale) {
-
         // Verify Date data
         if (sale.getDate() == null) {
             throw new BadRequestException("Sale Date required");
         }
-
         // Verify if the cart exist using its API.
-        if (!cartAPI.cartExist(sale.getCart_id())){
+        if (!cartServiceClient.cartExist(sale.getCart_id())){
             throw new NotFoundException("Cart with ID: " + sale.getCart_id() + " not found");
         }
-
         saleRepository.save(sale);
-
     }
 
     // GET / Internal method
@@ -50,7 +46,7 @@ public class SaleService implements ISaleService{
                 .orElseThrow(()-> new NotFoundException("Sale with ID: " + sale_id + " not found"));
     }
 
-    // Main method
+    // FIND SALE DTO
     public SaleDTO findSaleDTO(Long sale_id){
         Sale sale = findSaleEntity(sale_id);
         CartDTO cartDTO = cartServiceClient.findCartDTO(sale.getCart_id());
@@ -88,7 +84,7 @@ public class SaleService implements ISaleService{
         if (sale.getDate() == null){
             throw new BadRequestException("Sale date is required");
         }
-        if (!cartAPI.cartExist(sale.getCart_id())){
+        if (!cartServiceClient.cartExist(sale.getCart_id())){
             throw new NotFoundException("Cart with ID: " + sale.getCart_id() + " not found");
         }
 

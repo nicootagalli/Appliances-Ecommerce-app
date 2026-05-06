@@ -32,4 +32,18 @@ public class CartServiceClient {
         return fallbackCartDTO;
     }
 
+    // ---------------------------------------------------------------------------------------------------------
+
+    // Verify if the cart exist using its API.
+    @CircuitBreaker(name = "sale-service", fallbackMethod = "fallBackCartExist")
+    @Retry(name = "sale-service")
+    public Boolean cartExist(Long cart_id){
+         return (cartAPI.cartExist(cart_id));
+    }
+
+    public Boolean fallBackCartExist(Long cart_id, Throwable t) {
+        log.warn("Cart service is down");
+        return false;
+    }
+
 }

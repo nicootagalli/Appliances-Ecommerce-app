@@ -13,3 +13,7 @@ spring:
           searchPaths: config-data
           username: ${GIT_USER}
           password: ${GIT_PASSWORD}
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false

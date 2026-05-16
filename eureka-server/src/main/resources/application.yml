@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: eureka-server
+  config:
+    import: config-server:http://localhost:8081

@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: user-service
+  config:
+    import: config-server:http://localhost:8081

@@ -10,9 +10,8 @@ spring:
       server:
         git:
           uri: https://github.com/nicootagalli/Appliances-Ecommerce-app
-          searchPaths: config-data
-          username: ${GIT_USER}
-          password: ${GIT_PASSWORD}
+          search-paths: config-data
+
 eureka:
   client:
     register-with-eureka: false

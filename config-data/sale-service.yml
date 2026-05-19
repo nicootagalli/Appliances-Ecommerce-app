@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: sale-service
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/service-sale?useSSL=false&serverTimezone=UTC
+    username: root
+    password:
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+  management:
+    tracing:
+      sampling:
+        probability: 1.0
+
+    health:
+      circuitbreaker:
+        enabled: true
+
+    endpoints:
+      web:
+        exposure:
+          include: health
+
+    endpoint:
+      health:
+        show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      sale-service:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+        ignore-exceptions:
+          - com.nicodev.sale_service.exception.NotFoundException
+          - com.nicodev.sale_service.exception.BadRequestException
+
+server:
+  port: 8086

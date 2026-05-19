@@ -13,6 +13,8 @@ spring:
         git:
           uri: https://github.com/nicootagalli/Appliances-Ecommerce-app/tree/api_gateway_test
           searchPaths: config-data
+          username: ${GIT_USER}
+          password: ${GIT_PASSWORD}
 
 eureka:
   client:

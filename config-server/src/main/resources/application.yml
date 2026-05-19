@@ -11,7 +11,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/nicootagalli/Appliances-Ecommerce-app
+          uri: https://github.com/nicootagalli/Appliances-Ecommerce-app/tree/api_gateway_test
           search-paths: config-data
 
 eureka:

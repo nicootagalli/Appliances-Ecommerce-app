@@ -4,11 +4,9 @@ server:
 spring:
   application:
     name: config-server
-  profiles:
-    active: native
-
   cloud:
     config:
+      enabled: true
       server:
         git:
           uri: https://github.com/nicootagalli/Appliances-Ecommerce-app/tree/api_gateway_test

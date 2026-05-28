@@ -1,0 +1,20 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: config-server
+
+  cloud:
+    config:
+      server:
+        git:
+          uri:
+          searchPaths: config-data
+          username: ${GIT_USER}
+          password: ${PASSWORD}
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false

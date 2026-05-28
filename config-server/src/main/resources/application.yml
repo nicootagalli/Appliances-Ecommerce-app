@@ -10,7 +10,6 @@ spring:
       server:
         git:
           uri: https://github.com/nicootagalli/Appliances-Ecommerce-app/tree/cs_test
-          default-label: cs_test
           searchPaths: config-data
           username: ${GIT_USER}
           password: ${PASSWORD}

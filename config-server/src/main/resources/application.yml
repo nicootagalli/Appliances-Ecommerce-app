@@ -9,7 +9,7 @@ spring:
     config:
       server:
         git:
-          uri:
+          uri: https://github.com/nicootagalli/Appliances-Ecommerce-app/tree/cs_test
           searchPaths: config-data
           username: ${GIT_USER}
           password: ${PASSWORD}

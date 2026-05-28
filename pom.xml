@@ -39,6 +39,7 @@
         <module>cart-service</module>
         <module>user-service</module>
         <module>eureka-server</module>
+        <module>api_gateway</module>
     </modules>
 
 </project>

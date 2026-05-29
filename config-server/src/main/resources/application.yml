@@ -5,15 +5,6 @@ spring:
   application:
     name: config-server
 
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/nicootagalli/Appliances-Ecommerce-app/tree/cs_test
-          searchPaths: config-data
-          username: ${GIT_USER}
-          password: ${GIT_PASSWORD}
-
 eureka:
   client:
     register-with-eureka: false

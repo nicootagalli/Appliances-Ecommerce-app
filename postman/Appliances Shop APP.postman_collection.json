@@ -19,7 +19,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\" : \"Celular Iphone 17\",\r\n    \"section\" : \"Celulares\",\r\n    \"brand\": \"Apple\",\r\n    \"unit_price\": 1100000.0,\r\n    \"stock\" : 6\r\n}",
+              "raw": "{\r\n    \"name\" : \"Celular Iphone 20\",\r\n    \"section\" : \"Celulares\",\r\n    \"brand\": \"Apple\",\r\n    \"unit_price\": 3000000.0,\r\n    \"stock\" : 1\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -27,13 +27,14 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8083/products/save",
+              "raw": "http://localhost:9090/product-service/products/save",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8083",
+              "port": "9090",
               "path": [
+                "product-service",
                 "products",
                 "save"
               ]
@@ -50,13 +51,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8083/products/find",
+              "raw": "http://localhost:9090/product-service/products/find",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8083",
+              "port": "9090",
               "path": [
+                "product-service",
                 "products",
                 "find"
               ]
@@ -74,7 +76,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Heladera\",\r\n    \"section\" : \"Heladera\",\r\n    \"brand\": \"Samsung\",\r\n    \"unit_price\": 800000.0,\r\n    \"stock\": 10\r\n}",
+              "raw": "{\r\n    \"name\" : \"Celular Iphone 20\",\r\n    \"section\" : \"Celulares\",\r\n    \"brand\": \"Apple\",\r\n    \"unit_price\": 3000000.0,\r\n    \"stock\" : 1\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -82,16 +84,17 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8083/products/edit/3",
+              "raw": "http://localhost:9090/product-service/products/edit/15",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8083",
+              "port": "9090",
               "path": [
+                "product-service",
                 "products",
                 "edit",
-                "3"
+                "15"
               ]
             }
           },
@@ -107,7 +110,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"unit_price\": 100000.0\r\n}",
+              "raw": "{\r\n  \"name\" : \"Celular Iphone 20 pro max\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -115,16 +118,17 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8083/products/patch/2",
+              "raw": "http://localhost:9090/product-service/products/patch/15",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8083",
+              "port": "9090",
               "path": [
+                "product-service",
                 "products",
                 "patch",
-                "2"
+                "15"
               ]
             }
           },
@@ -139,16 +143,17 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8083/products/delete/",
+              "raw": "http://localhost:9090/product-service/products/delete/15",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8083",
+              "port": "9090",
               "path": [
+                "product-service",
                 "products",
                 "delete",
-                ""
+                "15"
               ]
             }
           },
@@ -163,16 +168,17 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8083/products/find/5",
+              "raw": "http://localhost:9090/product-service/products/find/15",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8083",
+              "port": "9090",
               "path": [
+                "product-service",
                 "products",
                 "find",
-                "5"
+                "15"
               ]
             }
           },
@@ -187,13 +193,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8083/products/find/section/",
+              "raw": "http://localhost:9090/product-service/products/find/section/",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8083",
+              "port": "9090",
               "path": [
+                "product-service",
                 "products",
                 "find",
                 "section",
@@ -212,13 +219,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8083/products/find/dto/1",
+              "raw": "http://localhost:9090/product-service/products/find/dto/1",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8083",
+              "port": "9090",
               "path": [
+                "product-service",
                 "products",
                 "find",
                 "dto",
@@ -237,41 +245,17 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8083/products/exist/54",
+              "raw": "http://localhost:9090/product-service/products/exist/54",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8083",
+              "port": "9090",
               "path": [
+                "product-service",
                 "products",
                 "exist",
                 "54"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Control Stock P/Q",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8083/products/stock/3/5",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8083",
-              "path": [
-                "products",
-                "stock",
-                "3",
-                "5"
               ]
             }
           },
@@ -292,7 +276,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\" : \"Cristiano\",\r\n    \"lastName\" : \"Ronaldo\",\r\n    \"dni\" : 7777777\r\n}",
+              "raw": "{\r\n    \"name\" : \"Rafael\",\r\n    \"lastName\" : \"Dos Santos\",\r\n    \"dni\" : 7764564\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -300,13 +284,14 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8084/users/save",
+              "raw": "http://localhost:9090/user-service/users/save",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8084",
+              "port": "9090",
               "path": [
+                "user-service",
                 "users",
                 "save"
               ]
@@ -323,13 +308,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8084/users/find",
+              "raw": "http://localhost:9090/user-service/users/find",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8084",
+              "port": "9090",
               "path": [
+                "user-service",
                 "users",
                 "find"
               ]
@@ -346,16 +332,17 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8084/users/find/2",
+              "raw": "http://localhost:9090/user-service/users/find/9",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8084",
+              "port": "9090",
               "path": [
+                "user-service",
                 "users",
                 "find",
-                "2"
+                "9"
               ]
             }
           },
@@ -379,13 +366,14 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8084/users/edit/5",
+              "raw": "http://localhost:9090/user-service/users/edit/5",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8084",
+              "port": "9090",
               "path": [
+                "user-service",
                 "users",
                 "edit",
                 "5"
@@ -412,13 +400,14 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8084/users/patch/6",
+              "raw": "http://localhost:9090/user-service/users/patch/6",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8084",
+              "port": "9090",
               "path": [
+                "user-service",
                 "users",
                 "patch",
                 "6"
@@ -436,13 +425,14 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8084/users/delete/7",
+              "raw": "http://localhost:9090/user-service/users/delete/7",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8084",
+              "port": "9090",
               "path": [
+                "user-service",
                 "users",
                 "delete",
                 "7"
@@ -460,13 +450,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8084/users/find/dto/1",
+              "raw": "http://localhost:9090/user-service/users/find/dto/1",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8084",
+              "port": "9090",
               "path": [
+                "user-service",
                 "users",
                 "find",
                 "dto",
@@ -485,13 +476,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8084/users/exist/22",
+              "raw": "http://localhost:9090/user-service/users/exist/22",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8084",
+              "port": "9090",
               "path": [
+                "user-service",
                 "users",
                 "exist",
                 "22"

@@ -4,7 +4,6 @@ import com.nicodev.product_service.dto.ProductDTO;
 import com.nicodev.product_service.model.Product;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IProductService {
 
@@ -34,6 +33,9 @@ public interface IProductService {
 
     // PRODUCT EXIST
     public Boolean productExist(Long product_id);
+
+    // ENOUGH STOCK
+    public Boolean enoughStock(Long product_id, int quantity);
 
 
 }

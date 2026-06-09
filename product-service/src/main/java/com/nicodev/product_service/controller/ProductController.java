@@ -75,4 +75,11 @@ public class ProductController {
         return ResponseEntity.ok(productService.productExist(product_id));
     }
 
+    // ENOUGH STOCK
+    @GetMapping("/stock/{product_id}/{quantity}")
+    public ResponseEntity<Boolean> enoughStock(@PathVariable Long product_id,
+                                               @PathVariable int quantity){
+        return ResponseEntity.ok(productService.enoughStock(product_id,quantity));
+    }
+
 }

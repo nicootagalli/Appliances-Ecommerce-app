@@ -158,5 +158,15 @@ public class ProductService implements IProductService{
         return productRepository.existsById(product_id);
     }
 
+    // ENOUGH STOCK
+    @Override
+    public Boolean enoughStock(Long product_id, int quantity) {
+        Product product = this.findProduct(product_id);
+        if (product.getStock() >= quantity)
+            return true;
+        else
+            return false;
+    }
+
 
 }

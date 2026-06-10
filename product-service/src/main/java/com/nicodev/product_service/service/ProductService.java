@@ -171,5 +171,14 @@ public class ProductService implements IProductService{
             return false;
     }
 
+    // UPDATE STOCK
+    @Override
+    public void updateStock(Long product_id, Integer quantity) {
+        Product product = this.findProduct(product_id);
+        Integer newStock = (product.getStock() - quantity);
+        product.setStock(newStock);
+        this.saveProduct(product);
+    }
+
 
 }

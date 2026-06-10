@@ -64,6 +64,7 @@ public class CartService implements ICartService{
                 .orElseThrow(() -> new NotFoundException("Cart with ID: " + cart_id + " not found"));
     }
 
+
     // FIND CART DTO
     @Override
     public CartDTO findCartDTO(Long cart_id) {
@@ -120,6 +121,18 @@ public class CartService implements ICartService{
     @Override
     public Boolean cartExist(Long cart_id) {
         return cartRepository.existsById(cart_id);
+    }
+
+    // CART OK (return true if there are enough stock for all the products)
+    @Override
+    public Boolean cartOK(Long cart_id) {
+        Cart cartToCheck = this.findCart(cart_id);
+        for (Item i : cartToCheck.getItems()){
+            if (!productAPI.enoughStock(i.getProduct_id(),i.getQuantity())){
+                throw new NotFoundException("Insufficient stock for product with ID: " + i.getProduct_id());
+            }
+        }
+        return true;
     }
 
     public Double totalHandler(List<Item> myItems){

@@ -69,5 +69,11 @@ public class CartController {
         return ResponseEntity.ok(cartService.cartExist(cart_id));
     }
 
+    // CART OK
+    @GetMapping("/control/{cart_id}")
+    public ResponseEntity<Boolean> cartOK(@PathVariable Long cart_id){
+        return ResponseEntity.ok(cartService.cartOK(cart_id));
+    }
+
 
 }

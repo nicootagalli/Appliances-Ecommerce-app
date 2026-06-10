@@ -82,4 +82,12 @@ public class ProductController {
         return ResponseEntity.ok(productService.enoughStock(product_id,quantity));
     }
 
+    // UPDATE STOCK
+    @PutMapping("/updatestock/{product_id}/{quantity}")
+    public ResponseEntity<Void> updateStock(@PathVariable Long product_id,
+                                            @PathVariable Integer quantity){
+        productService.updateStock(product_id,quantity);
+        return ResponseEntity.noContent().build();
+    }
+
 }

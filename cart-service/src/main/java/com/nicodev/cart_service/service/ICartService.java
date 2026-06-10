@@ -32,4 +32,7 @@ public interface ICartService {
     // CART EXIST
     public Boolean cartExist(Long cart_id);
 
+    // CART OK
+    public Boolean cartOK(Long cart_id);
+
 }

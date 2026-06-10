@@ -37,5 +37,8 @@ public interface IProductService {
     // ENOUGH STOCK
     public Boolean enoughStock(Long product_id, Integer quantity);
 
+    // UPDATE STOCK
+    public void updateStock(Long product_id, Integer quantity);
+
 
 }

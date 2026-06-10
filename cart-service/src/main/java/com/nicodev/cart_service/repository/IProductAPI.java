@@ -18,4 +18,8 @@ public interface IProductAPI {
     public Boolean enoughStock(@PathVariable("product_id") Long product_id,
                                @PathVariable("quantity") Integer quantity);
 
+    @GetMapping("products/updatestock/{product_id}/{quantity}")
+    public void updateStock(@PathVariable("product_id") Long product_id,
+                            @PathVariable("quantity") Integer quantity);
+
 }

@@ -14,4 +14,8 @@ public interface IProductAPI {
     @GetMapping("products/exist/{product_id}")
     public Boolean productExist(@PathVariable("product_id") Long product_id);
 
+    @GetMapping("products/stock/{product_id}/{quantity}")
+    public Boolean enoughStock(@PathVariable("product_id") Long product_id,
+                               @PathVariable("quantity") Integer quantity);
+
 }

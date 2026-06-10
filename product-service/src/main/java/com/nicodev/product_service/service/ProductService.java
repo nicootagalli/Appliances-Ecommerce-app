@@ -160,8 +160,11 @@ public class ProductService implements IProductService{
 
     // ENOUGH STOCK
     @Override
-    public Boolean enoughStock(Long product_id, int quantity) {
+    public Boolean enoughStock(Long product_id, Integer quantity) {
         Product product = this.findProduct(product_id);
+        if (quantity == null || quantity == 0){
+            throw new BadRequestException("The quantity can not be Null or 0");
+        }
         if (product.getStock() >= quantity)
             return true;
         else

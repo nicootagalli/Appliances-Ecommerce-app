@@ -128,13 +128,18 @@ public class CartService implements ICartService{
         Double total = 0.0;
 
         for (Item i : myItems) {
-            // verify if the product exist usin its API
+            // verify if the product exist using its API
             if (!productAPI.productExist(i.getProduct_id())){
                 throw new NotFoundException("Product with ID: " + i.getProduct_id() + " not found");
             }
 
             // find the productDTO using its API and take its unit price
             proDTO = productAPI.findProductDTO(i.getProduct_id());
+
+            // control stock
+            if (!productAPI.enoughStock(i.getProduct_id(), i.getQuantity())){
+                throw new NotFoundException("Insufficient stock for product with ID: " + i.getProduct_id());
+            }
 
             // Verify the quantity is not 0
             if (i.getQuantity() <= 0) {

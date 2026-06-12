@@ -16,8 +16,5 @@ public interface ICartAPI {
     @GetMapping("cart/find/dto/{cart_id}")
     public CartDTO findCartDTO(@PathVariable("cart_id") Long cart_id);
 
-    // CART OK
-    @GetMapping("cart/control/{cart_id}")
-    public Boolean cartOK(@PathVariable("cart_id") Long cart_id);
 
 }

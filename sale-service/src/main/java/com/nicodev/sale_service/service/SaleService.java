@@ -37,11 +37,7 @@ public class SaleService implements ISaleService{
         if (!cartServiceClient.cartExist(sale.getCart_id())){
             throw new NotFoundException("Cart with ID: " + sale.getCart_id() + " not found");
         }
-        // Verify if the cart still has enough stock and update it.
-        if (cartAPI.cartOK(sale.getCart_id())){
-            saleRepository.save(sale);
-        }
-
+        saleRepository.save(sale);
     }
 
     // GET / Internal method

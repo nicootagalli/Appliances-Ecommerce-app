@@ -123,21 +123,6 @@ public class CartService implements ICartService{
         return cartRepository.existsById(cart_id);
     }
 
-    // CART OK (return true if there are enough stock for all the products)
-    @Override
-    public Boolean cartOK(Long cart_id) {
-        Cart cartToCheck = this.findCart(cart_id);
-        for (Item i : cartToCheck.getItems()){
-            if (!productAPI.enoughStock(i.getProduct_id(),i.getQuantity())){
-                throw new NotFoundException("Insufficient stock for product with ID: " + i.getProduct_id());
-            }
-        }
-        //el stock de cada producto deberia actualizarce una vez que todos los items estan ok.
-        for (Item i : cartToCheck.getItems()){
-            productAPI.updateStock(i.getProduct_id(),i.getQuantity());
-        }
-        return true;
-    }
 
     public Double totalHandler(List<Item> myItems){
 

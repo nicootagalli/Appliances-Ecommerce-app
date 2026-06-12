@@ -4,6 +4,7 @@ import com.nicodev.cart_service.dto.ProductDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @FeignClient(name = "product-service")
 public interface IProductAPI {
@@ -18,7 +19,7 @@ public interface IProductAPI {
     public Boolean enoughStock(@PathVariable("product_id") Long product_id,
                                @PathVariable("quantity") Integer quantity);
 
-    @GetMapping("products/updatestock/{product_id}/{quantity}")
+    @PutMapping("products/updatestock/{product_id}/{quantity}")
     public void updateStock(@PathVariable("product_id") Long product_id,
                             @PathVariable("quantity") Integer quantity);
 

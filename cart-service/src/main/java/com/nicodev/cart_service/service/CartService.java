@@ -131,6 +131,9 @@ public class CartService implements ICartService{
             if (!productAPI.enoughStock(i.getProduct_id(),i.getQuantity())){
                 throw new NotFoundException("Insufficient stock for product with ID: " + i.getProduct_id());
             }
+        }
+        //el stock de cada producto deberia actualizarce una vez que todos los items estan ok.
+        for (Item i : cartToCheck.getItems()){
             productAPI.updateStock(i.getProduct_id(),i.getQuantity());
         }
         return true;

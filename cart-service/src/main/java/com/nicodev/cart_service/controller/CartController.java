@@ -69,5 +69,11 @@ public class CartController {
         return ResponseEntity.ok(cartService.cartExist(cart_id));
     }
 
+    // PROCESS DATA
+    @PostMapping("/process/{cart_id}")
+    public ResponseEntity<Void> processData(@PathVariable Long cart_id){
+        cartService.processData(cart_id);
+        return ResponseEntity.noContent().build();
+    }
 
 }

@@ -123,6 +123,25 @@ public class CartService implements ICartService{
         return cartRepository.existsById(cart_id);
     }
 
+    // PROCESS DATA
+    @Override
+    public void processData(Long cart_id) {
+        // Find the Cart of the Sale
+        Cart cartToProcess = this.findCart(cart_id);
+
+        // Verify that all the products still has enough stock.
+        for (Item i : cartToProcess.getItems()){
+            if (!productAPI.enoughStock(i.getProduct_id(), i.getQuantity())){
+                throw new NotFoundException("Insufficient stcok for product with ID: " + i.getProduct_id());
+            }
+        }
+
+        // Ones all the products has enough stock, we update it.
+        for (Item i : cartToProcess.getItems()){
+            productAPI.updateStock(i.getProduct_id(), i.getQuantity());
+        }
+    }
+
 
     public Double totalHandler(List<Item> myItems){
 

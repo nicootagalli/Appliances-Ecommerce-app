@@ -32,5 +32,8 @@ public interface ICartService {
     // CART EXIST
     public Boolean cartExist(Long cart_id);
 
+    // PROCESS DATA
+    public void processData(Long cart_id);
+
 
 }

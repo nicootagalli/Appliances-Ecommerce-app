@@ -34,9 +34,6 @@ public class ProductService implements IProductService{
         if(product.getUnit_price() == null || product.getUnit_price() <= 0.0 ){
             throw new BadRequestException("Product price required");
         }
-        if(product.getStock() == null || product.getStock() <= 0 ){
-            throw new BadRequestException("Product stock required");
-        }
 
         // If everything is ok, save.
         productRepository.save(product);

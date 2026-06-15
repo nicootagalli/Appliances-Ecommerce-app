@@ -4,6 +4,7 @@ import com.nicodev.sale_service.dto.CartDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @FeignClient(name = "cart-service")
 public interface ICartAPI {
@@ -16,5 +17,8 @@ public interface ICartAPI {
     @GetMapping("cart/find/dto/{cart_id}")
     public CartDTO findCartDTO(@PathVariable("cart_id") Long cart_id);
 
+    // PROCESS DATA
+    @PostMapping("cart/process/{cart_id}")
+    public void processData(@PathVariable("cart_id") Long cart_id);
 
 }

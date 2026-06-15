@@ -46,4 +46,17 @@ public class CartServiceClient {
         return false;
     }
 
+    // ---------------------------------------------------------------------------------------------------------
+
+    // Process Data
+    @CircuitBreaker(name = "sale-service", fallbackMethod = "fallBackProcessData")
+    @Retry(name = "sale-service")
+    public void processData(Long cart_id){
+        cartAPI.processData(cart_id);
+    }
+
+    public void fallBackProcessData(Long cart_id, Throwable t){
+        log.warn("Cart service is down now");
+    }
+
 }

@@ -3,9 +3,9 @@ spring:
     name: cart-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/service-cart?useSSL=false&serverTimezone=UTC
-    username: root
-    password: 140204150499
+    url: ${CART_DB_URL}
+    username: ${USER_NAME}
+    password: ${PASSWORD}
 
   jpa:
     hibernate:

@@ -75,16 +75,6 @@ public class CartService implements ICartService{
         return dto;
     }
 
-    // FIND CART TO USER
-    @Override
-    public CartToUserDTO findCartToUser(Long cart_id) {
-
-        Cart cart = this.findCart(cart_id);
-        CartToUserDTO dtoToUser = CartMapper.toUserDTO(cart);
-
-        return dtoToUser;
-    }
-
     // EDIT CART
     @Override
     public CartDTO editCart(Long cart_id, CartToUserDTO newCart) {

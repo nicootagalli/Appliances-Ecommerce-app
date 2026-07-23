@@ -3,9 +3,9 @@ spring:
     name: product-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/service-product?useSSL=false&serverTimezone=UTC
-    username: root
-    password: 140204150499
+    url: ${PRODUCT_DB_URL}
+    username: ${USER_NAME}
+    password: ${PASSWORD}
 
   jpa:
     hibernate:

@@ -43,12 +43,6 @@ public class CartController {
         return ResponseEntity.ok(cartService.findCartDTO(cart_id));
     }
 
-    // FIND CART TO USER
-    @GetMapping("/find/dto/user/{cart_id}")
-    public ResponseEntity<CartToUserDTO> findCartToUser(@PathVariable Long cart_id){
-        return ResponseEntity.ok(cartService.findCartToUser(cart_id));
-    }
-
     // EDIT CART
     @PutMapping("/edit/{cart_id}")
     public ResponseEntity<CartDTO> editCart(@PathVariable Long cart_id,

@@ -20,9 +20,6 @@ public interface ICartService {
     // FIND CART DTO
     public CartDTO findCartDTO(Long cart_id);
 
-    // FIND CART DTO TO USER
-    public CartToUserDTO findCartToUser(Long cart_id);
-
     // EDIT CART
     public CartDTO editCart(Long cart_id, CartToUserDTO newCart);
 

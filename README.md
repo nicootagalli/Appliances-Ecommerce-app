@@ -1,161 +1,85 @@
-# 🛒 E-Commerce de Electrodomésticos (Arquitectura de Microservicios)
+🛒 E‑Commerce de Electrodomésticos (Microservicios)
+📌 Descripción
+Backend en Java 17 + Spring Boot con arquitectura de microservicios.
+Permite gestionar usuarios, productos, carritos y ventas, cada uno en su propio servicio.
 
-## 📌 Descripción general
-
-Este proyecto es una aplicación backend para una plataforma de comercio electrónico especializada en electrodomésticos.  
-Está construida utilizando una **arquitectura de microservicios** con Java y Spring Boot, siguiendo buenas prácticas de escalabilidad, modularidad y mantenibilidad.
-
-El sistema permite la gestión de:
-
-* Usuarios
-* Productos
-* Carritos
-* Ventas
-
-Cada responsabilidad está separada en servicios independientes que se comunican entre sí.
-
----
-
-## 🧱 Arquitectura
-
+🧱 Arquitectura y Patrones
 La aplicación está compuesta por los siguientes microservicios:
 
-* **user-service** → Gestiona usuarios
-* **product-service** → Gestiona productos y stock
-* **cart-service** → Maneja carritos de compra
-* **sale-service** → Procesa ventas
-* **eureka-server** → Descubrimiento de servicios
+config-server → Centralización de configuraciones
 
-### 🔄 Comunicación
+eureka-server → Descubrimiento de servicios
 
-* APIs REST
-* Clientes OpenFeign para comunicación entre servicios
-* Descubrimiento de servicios usando Eureka
+api_gateway → Entrada única a los microservicios
 
----
+user-service → Usuarios
 
-## ⚙️ Tecnologías utilizadas
+product-service → Productos y stock
 
-* Java 17+
-* Programación funcional (Streams, Optional, Lambdas)
-* Spring Boot
-* Spring Data JPA
-* Spring Cloud (Eureka, OpenFeign)
-* MySQL
-* Maven
-* Git & GitHub
-* Postman
+cart-service → Carritos
 
----
+sale-service → Ventas
 
-## 🚀 Cómo ejecutar el proyecto
+🔄 Comunicación
+APIs REST
 
-1. Iniciar el **Eureka Server**
-2. Ejecutar cada microservicio:
-   * user-service
-   * product-service
-   * cart-service
-   * sale-service
-3. Verificar que todos los servicios estén registrados en Eureka:
-   http://localhost:8761
+Clientes OpenFeign
 
----
+Descubrimiento de servicios con Eureka
 
+📐 Patrones aplicados
+Service Registry & Service Discovery (Eureka)
 
----
+Load Balancing
 
-## 📡 Funcionalidades principales
+Circuit Breaker
 
-### 👤 Gestión de usuarios
+API Gateway
 
-* Crear usuarios
-* Validar la existencia de usuarios mediante API
+Config Server
 
-### 📦 Gestión de productos
+⚙️ Tecnologías
+Java 17, Spring Boot, Spring Data JPA, Spring Cloud (Eureka, Feign), MySQL, Maven, Git/GitHub, Postman.
 
-* Operaciones CRUD para productos
-* Gestión de stock
-* Acceso externo para validación y precios
+🚀 Ejecución
+Crear las bases de datos necesarias en MySQL con los nombres correspondientes (ej: service-user, service-product, service-cart, service-sale), usuario root y contraseña vacía.
 
-### 🛒 Sistema de carrito
+Iniciar el Config Server.
 
-* Agregar productos al carrito
-* Validar disponibilidad de stock (pre-chequeo)
-* Calcular el total dinámicamente
-* Uso de precio “snapshot” (precio al momento de agregar)
+Iniciar el Eureka Server.
 
-### 💰 Sistema de ventas
+Iniciar el Api Gateway.
 
-* Crear ventas basadas en datos del carrito
-* Obtener información del carrito dinámicamente
-* Orquestar el flujo de compra entre servicios
+Ejecutar cada microservicio.
 
-✅ Manejo de errores y respuestas HTTP  
-- Uso de `ResponseEntity` para construir respuestas HTTP personalizadas  
-- Implementación de manejo global de excepciones mediante `@ControllerAdvice`  
-- Clase centralizada `GlobalExceptionHandler`  
-- Respuestas consistentes con códigos HTTP adecuados (`200`, `201`, `400`, `404`, etc.)  
-- Validaciones de negocio con excepciones específicas  
----
+Verificar en http://localhost:8761 que estén registrados.
 
-## 🧠 Decisiones de diseño
+📡 Funcionalidades
+Usuarios: creación y validación
 
-* **Aislamiento de microservicios**: Cada servicio posee sus propios datos
-* **Uso de DTOs**: Evita exponer entidades internas
-* **Capa de mapeo (Mapper)**: Separación clara de responsabilidades
-* **Manejo centralizado de excepciones**
-* **Comunicación entre APIs**: Uso de clientes Feign
+Productos: CRUD + stock
 
----
+Carrito: agregar productos, validar stock, calcular total
 
-## ⚡ Uso de programación funcional
+Ventas: crear ventas desde carritos, orquestar flujo de compra
 
-Este proyecto incorpora principios de programación funcional en Java para mejorar la legibilidad, seguridad y mantenibilidad del código.
+Manejo de errores con ResponseEntity, GlobalExceptionHandler y códigos HTTP consistentes.
 
-Usos principales:
+🧠 Diseño
+Microservicios aislados con sus propios datos
 
-- **Streams API** para procesamiento de colecciones
-- **Optional** para evitar problemas relacionados con valores nulos
-- **Expresiones lambda** para una lógica más clara y expresiva
-- Estilo declarativo sobre bucles imperativos cuando es posible
+Uso de DTOs y Mappers
 
-Estas prácticas ayudan a reducir código repetitivo y hacen que la lógica de negocio sea más concisa y expresiva.
+Excepciones centralizadas
 
----
+Comunicación entre APIs con Feign
 
-## 📬 Pruebas de API
+⚡ Programación funcional
+Streams, Optional y Lambdas para código más claro y conciso.
 
-Se incluye una colección de Postman para probar todos los endpoints fácilmente.
+📬 Pruebas
+Colección Postman incluida para probar endpoints en orden: User → Product → Cart → Sale.
 
-Pasos:
-
-1. Importar la colección en Postman
-2. Ejecutar las requests en orden (User → Product → Cart → Sale)
-
----
-
-## 🚧 Trabajo en progreso
-
-Actualmente se está implementando:
-
-* Sistema de gestión de stock
-* Actualizaciones atómicas de stock en `product-service`
-* Manejo de concurrencia para compras simultáneas
-
-Esta funcionalidad se está desarrollando en la rama: stock-management
-
-* API Gateway
-* Circuit Breaker (Resilience4j)
-* Config Server
-* Autenticación y autorización (Spring Security + JWT)
-* Contenerización con Docker
----
-
-
----
-
-## 🧠 Mejoras futuras
-
-* Autenticación y autorización (Spring Security + JWT)
-
----
+Proximas mejoras:
+- Seguridad con JWT.
+- Docker.

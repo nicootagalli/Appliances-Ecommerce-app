@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/service-sale?useSSL=false&serverTimezone=UTC
     username: root
-    password: 140204150499
+    password:
 
   jpa:
     hibernate:

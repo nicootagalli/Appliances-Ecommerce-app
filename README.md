@@ -1,5 +1,5 @@
 🛒 E‑Commerce de Electrodomésticos (Microservicios)
-📌 Descripción
+📌 
 Backend en Java 17 + Spring Boot con arquitectura de microservicios.
 Permite gestionar usuarios, productos, carritos y ventas, cada uno en su propio servicio.
 
